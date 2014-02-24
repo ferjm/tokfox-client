@@ -1,0 +1,39 @@
+{
+  "name": "tokfox",
+  "version": "v1",
+  "title": "TokFox API",
+  "description": "TokFox API",
+  "baseUrl": "http://127.0.0.1:3000",
+  "basePath": "/",
+  "rootUrl": "http://127.0.0.1:3000",
+  "resources": {
+    "session": {
+      "resources": {
+	"credential": {
+	  "methods": {
+	    "get": {
+	     "path": "/session/credentials",
+	     "httpMethod": "POST"
+	    }
+          }
+	},
+	"invitation": {
+	  "methods": {
+	    "post": {
+	     "path": "/session/invite",
+	     "httpMethod": "POST"
+	    }
+          }
+        }
+      }
+    },
+    "account": {
+      "methods": {
+	"post": {
+	 "path": "/account/create",
+	 "httpMethod": "POST"
+	}
+      }
+    }
+  }
+}
