@@ -32,3 +32,6 @@ Running the linter
 gulp lint
 ```
 
+Build status
+---
+[![Build Status](https://magnum.travis-ci.com/ferjm/tokfox-client.png?token=nVp5pzcZquCq324YePdz&branch=master)](https://magnum.travis-ci.com/ferjm/tokfox-client)
