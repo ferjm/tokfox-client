@@ -1,17 +1,19 @@
 /* -*- Mode: js; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- /
 /* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
 
-/* exported Requester */
-
-var request = require('request');
+/* exported MockRequester */
 
 /**
- * Default TokFox requester constructor.
+ * MockRequester reads the contents of a file given by filePath and
+ * acts as request has returned contents as response body.
+ *
+ * @param {string} filePath Path of the file.
  */
-function Requester() {
+function MockRequester(filePath) {
+  this.filePath = filePath;
 }
 
-Requester.prototype = {
+MockRequester.prototype = {
   /**
    * Configures request options before making a request.
    * @param {Object} options Options to configure.
@@ -27,8 +29,9 @@ Requester.prototype = {
    * @param {Function} callback Optional callback.
    */
   request: function tfp_request(options, callback) {
-    options = this.configure(options);
-    request(options, this.wrapCallback(callback));
+    if (callback && (typeof callback === 'function')) {
+      this.wrapCallback(callback)(null, {}, {});
+    }
   },
 
   wrapCallback: function tfp_wrapCallback(callback) {
@@ -44,6 +47,7 @@ Requester.prototype = {
       }
 
       if (body && body.error) {
+        // handle single request errors
         error = body.error;
         body = null;
       }
@@ -54,4 +58,4 @@ Requester.prototype = {
   }
 };
 
-module.exports = Requester;
+module.exports = MockRequester;

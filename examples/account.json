@@ -1,0 +1,7 @@
+{
+  "alias": {
+    "type": "msisdn",
+    "value": "+34667447797"
+  },
+  "pushEndpoint": "http://arandomurl.com"
+}
