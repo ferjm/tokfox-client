@@ -21,6 +21,14 @@ var Examples = (function Examples() {
     });
   }
 
+  function tf_getAccounts() {
+    tokfox.getAccounts(
+      function(error, result) {
+        console.log('result is ' + JSON.stringify(result));
+        console.log('error is ' + JSON.stringify(error));
+    });
+  }
+
   function tf_createSession() {
     tokfox.createSession(
       null,
@@ -55,6 +63,7 @@ var Examples = (function Examples() {
   return {
     hello: tf_hello,
     createAccount: tf_createAccount,
+    getAccounts: tf_getAccounts,
     createSession: tf_createSession,
     invite: tf_invite,
     acceptInvitation: tf_acceptInvitation
