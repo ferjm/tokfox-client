@@ -6,8 +6,6 @@ var mocha = require('gulp-mocha');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 
-var examples = require('./examples/examples.js');
-
 
 gulp.task('lint', function() {
   gulp.src(['**/*.js', '!dist/**', '!node_modules/**', '!test/**'])
@@ -20,28 +18,19 @@ gulp.task('test', function() {
       .pipe(mocha({ reporter: 'spec' }));
 });
 
-gulp.task('build', function() {
+gulp.task('build-uglified', function() {
   gulp.src('lib/*.js')
     .pipe(rename(pkg.name + '-' + pkg.version + '.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('createAccount', function() {
-  examples.createAccount();
-});
-
-gulp.task('createSession', function() {
-  examples.createSession();
-});
-
-gulp.task('invite', function() {
-  examples.invite();
-});
-
-gulp.task('acceptInvitation', function() {
-  examples.acceptInvitation();
+gulp.task('build', function() {
+  gulp.src('lib/*.js')
+    .pipe(rename(pkg.name + '-' + pkg.version + '.js'))
+    .pipe(gulp.dest('./dist'));
 });
 
 // The default task
-gulp.task('default', ['lint', 'test', 'build']);
+gulp.task('default', ['lint', 'test', 'build', 'build-uglified']);
+
